@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Captcha Skipper</string>
+    <string name="start">Démarer</string>
+    <string name="done">Valider</string>
+    <string name="getting_link">Récupération du lien</string>
+    <string name="ip_adress">Adresse IP du serveur</string>
+    <string name="enter_ip_adress">Entrez l\'adresse IP du serveur</string>
+</resources>

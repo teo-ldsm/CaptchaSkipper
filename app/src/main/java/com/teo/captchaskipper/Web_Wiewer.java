@@ -18,6 +18,5 @@ public class Web_Wiewer extends AppCompatActivity {
         setContentView(R.layout.activity_web_wiewer);
 
 
-
     }
 }

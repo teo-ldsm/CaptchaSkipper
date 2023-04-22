@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Captcha Skipper</string>
+    <string name="start">Start</string>
+    <string name="done">Done</string>
+    <string name="getting_link">Getting Link</string>
+    <string name="ip_adress">Server IP Adress</string>
+    <string name="enter_ip_adress">Enter the server IP adress</string>
 </resources>

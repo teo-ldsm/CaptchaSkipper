@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+
+    >
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="@string/enter_ip_adress"
+            android:textSize="16sp"
+            android:layout_marginTop="10dp"
+            />
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bloc_text_btn"
+            android:gravity="start"
+        >
+
+        <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:inputType="text"
+                android:hint="@string/ip_adress"
+                android:ems="10"
+                android:id="@+id/input_ip_adress"
+                android:autofillHints="Server IP Adress"
+                tools:ignore="LabelFor"
+                />
+
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_ok"
+                android:layout_marginStart="50dp"
+                android:layout_toEndOf="@id/input_ip_adress"
+                android:text="OK"
+                style="@style/Widget.AppCompat.Button" />
+
+    </RelativeLayout>
+
+    <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:progressTint="#673AB7"
+            android:visibility="gone"
+            />
+
+    <TextView
+            android:text="@string/getting_link"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            />
+
+
+
+
+</LinearLayout>
