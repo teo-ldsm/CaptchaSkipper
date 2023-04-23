@@ -4,6 +4,7 @@
     <string name="start">Démarer</string>
     <string name="done">Valider</string>
     <string name="getting_link">Récupération du lien</string>
-    <string name="ip_adress">Adresse IP du serveur</string>
-    <string name="enter_ip_adress">Entrez l\'adresse IP du serveur</string>
+    <string name="ip_adress_placeholder">Adresse IP du serveur</string>
+    <string name="enter_ip_adress">Entrez l\'adresse IP et le port du serveur</string>
+    <string name="port">Port</string>
 </resources>

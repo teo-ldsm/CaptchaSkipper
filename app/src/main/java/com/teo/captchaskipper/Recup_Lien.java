@@ -1,24 +1,33 @@
 package com.teo.captchaskipper;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-
+import android.os.Looper;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
-import org.json.JSONException;
-import org.json.JSONObject;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.io.IOException;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
+
 
 
 public class Recup_Lien extends AppCompatActivity {
+
+
+    private String responseBody;
+
 
 
     @Override
@@ -26,7 +35,20 @@ public class Recup_Lien extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recup_lien);
 
-        Button getlink = (Button) findViewById(R.id.btn_ok);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        EditText input_ip = findViewById(R.id.input_ip_adress);
+        EditText input_port = findViewById(R.id.input_port);
+
+
+        String lastIP = sharedPreferences.getString("lastIP", "");
+        String lastPort = sharedPreferences.getString("lastPort", "");
+
+
+        input_ip.setText(lastIP);
+        input_port.setText(lastPort);
+
+        Button getlink = findViewById(R.id.btn_ok);
 
         getlink.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,9 +56,7 @@ public class Recup_Lien extends AppCompatActivity {
 
                 get_link();
 
-                System.out.println();
-
-        }});
+            }});
 
 
 
@@ -44,35 +64,68 @@ public class Recup_Lien extends AppCompatActivity {
 
     private void get_link() {
 
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        EditText simpleEditText = (EditText) findViewById(R.id.input_ip_adress);
-        String ip_adress = simpleEditText.getText().toString();
 
-        RequestQueue volleyQueue = Volley.newRequestQueue(Recup_Lien.this);
-        String url = "http://" + ip_adress + ""; // TODO Mettre l'URL de l'API Flask
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+        EditText input_ip = findViewById(R.id.input_ip_adress);
+        String ip_adress = input_ip.getText().toString();
 
-                Request.Method.GET,
-                url,
-                null,
-                (Response.Listener<JSONObject>) response -> {
+        editor.putString("lastIP", ip_adress);
+        editor.apply();
 
-                    String captcha_url;
-                    try {
 
-                        captcha_url = response.getString("message");
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                },
-                (Response.ErrorListener) error -> {
-                    Toast.makeText(Recup_Lien.this, "Some error occurred! Cannot fetch captcha URL", Toast.LENGTH_LONG).show();
-                    Log.e("MainActivity", "error: ${error.localizedMessage}");
+        EditText input_port = findViewById(R.id.input_port);
+        String port = input_port.getText().toString();
+
+        editor.putString("lastPort", port);
+        editor.apply();
+
+
+        String url = "http://" + ip_adress + ":" + port + "/get_url";
+
+
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Boolean aucuneErreur;
+
+                Request getUrlRequest = new Request.Builder()
+                        .url(url)
+                        .build();
+                try {
+                    OkHttpClient client = new OkHttpClient();
+                    Response response = client.newCall(getUrlRequest).execute();
+                    assert response.body() != null;
+                    String responseBody = response.body().string();
+                    System.out.println(responseBody);
+                    aucuneErreur = Boolean.TRUE;
+
+
+                } catch (IOException e) {
+                    Log.e("API", "Failed to make API request.", e);
+                    Looper.prepare();
+                    Toast.makeText(Recup_Lien.this, "Enable to connect to the server", Toast.LENGTH_LONG).show();
+
+                    aucuneErreur = Boolean.FALSE;
+
                 }
-        );
-        volleyQueue.add(jsonObjectRequest);
+                if (aucuneErreur){
+
+                    Looper.prepare();
+                    Toast.makeText(Recup_Lien.this, "Connected to " + responseBody, Toast.LENGTH_LONG).show(); // TODO L'url n'est pas bien récupéré et ça print null ici
+
+                    Intent intent = new Intent(Recup_Lien.this, Web_Wiewer.class);
+                    intent.putExtra("RESPONSE_BODY", responseBody);
+                    startActivity(intent);
+                    finish();
+
+                }
+            }
+        }).start();
 
     }
 }
