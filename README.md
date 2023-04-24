@@ -8,4 +8,4 @@ Une fois que l'utilisateur a résolu la capotcha, elle renvoie le lien a l'API
 L'appli vous demande de rentrer l'IP et le port de l'API. Elle peut être implémentée avec la library Python Flask.
 **Les chemins d'accès http de l'API doivent impérativement être '/get_url' et '/upload_url'**
 
- est un exemple fonctionnel de l'API pour vos projets.
+https://github.com/teo-ldsm/CaptchaSkipper/url_transmitter_api.py est un exemple fonctionnel de l'API pour vos projets.
