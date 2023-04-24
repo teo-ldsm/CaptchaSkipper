@@ -7,4 +7,5 @@
     <string name="ip_adress_placeholder">Adresse IP du serveur</string>
     <string name="enter_ip_adress">Entrez l\'adresse IP et le port du serveur</string>
     <string name="port">Port</string>
+    <string name="instruction_validation">Appuyez sur Valider lorsque vous avez quitté la page du captcha</string>
 </resources>

@@ -3,8 +3,9 @@
     <string name="start">Start</string>
     <string name="done">Done</string>
     <string name="getting_link">Getting Link</string>
-    <string name="ip_adress_placeholder">Server IP Adress</string>
+    <string name="ip_adress_placeholder">Server IP Address</string>
     <string name="enter_ip_adress">Enter the ip address and port of the server</string>
     <string name="port">Port</string>
     <string name="default_port" translatable="false">5000</string>
+    <string name="instruction_validation">Press Done when you have left the captcha page</string>
 </resources>

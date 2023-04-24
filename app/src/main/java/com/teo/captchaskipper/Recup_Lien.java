@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,9 +23,6 @@ import okhttp3.Response;
 
 
 public class Recup_Lien extends AppCompatActivity {
-
-
-    private String responseBody;
 
 
 
@@ -89,9 +85,14 @@ public class Recup_Lien extends AppCompatActivity {
 
 
         new Thread(new Runnable() {
+
+            String responseBody;
+
             @Override
             public void run() {
+
                 Boolean aucuneErreur;
+
 
                 Request getUrlRequest = new Request.Builder()
                         .url(url)
@@ -100,7 +101,7 @@ public class Recup_Lien extends AppCompatActivity {
                     OkHttpClient client = new OkHttpClient();
                     Response response = client.newCall(getUrlRequest).execute();
                     assert response.body() != null;
-                    String responseBody = response.body().string();
+                    responseBody = response.body().string();
                     System.out.println(responseBody);
                     aucuneErreur = Boolean.TRUE;
 
@@ -116,10 +117,11 @@ public class Recup_Lien extends AppCompatActivity {
                 if (aucuneErreur){
 
                     Looper.prepare();
-                    Toast.makeText(Recup_Lien.this, "Connected to " + responseBody, Toast.LENGTH_LONG).show(); // TODO L'url n'est pas bien récupéré et ça print null ici
+                    Toast.makeText(Recup_Lien.this, "Connected to " + responseBody, Toast.LENGTH_LONG).show();
 
                     Intent intent = new Intent(Recup_Lien.this, Web_Wiewer.class);
                     intent.putExtra("RESPONSE_BODY", responseBody);
+                    intent.putExtra("UPLOAD_URL", "http://" + ip_adress + ":" + port + "/upload_url");
                     startActivity(intent);
                     finish();
 
