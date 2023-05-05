@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Captcha Skipper</string>
-    <string name="start">Démarer</string>
+    <string name="start">Démarrer</string>
     <string name="done">Valider</string>
     <string name="getting_link">Récupération du lien</string>
     <string name="ip_adress_placeholder">Adresse IP du serveur</string>
     <string name="enter_ip_adress">Entrez l\'adresse IP et le port du serveur</string>
     <string name="port">Port</string>
     <string name="instruction_validation">Appuyez sur Valider lorsque vous avez quitté la page du captcha</string>
+    <string name="welcome">Bienvenu sur Captcha Skipper. Cette application est open source. vous pouvez retrouver le code source sur ce Github</string>
+    <string name="github"><a href="https://github.com/teo-ldsm/CaptchaSkipper">Lien vers le Github</a></string>
+    <string name="instruction">Une fois que vous avez résolu le captcha, cliquez sur le lien qui vient d\'apparaitre puis cliquez sur le bouton valider en haut a gauche de l\'écran</string>
 </resources>

@@ -117,7 +117,7 @@ public class Recup_Lien extends AppCompatActivity {
                 if (aucuneErreur){
 
                     Looper.prepare();
-                    Toast.makeText(Recup_Lien.this, "Connected to " + responseBody, Toast.LENGTH_LONG).show();
+//                    Toast.makeText(Recup_Lien.this, "Connected to " + responseBody, Toast.LENGTH_LONG).show();
 
                     Intent intent = new Intent(Recup_Lien.this, Web_Wiewer.class);
                     intent.putExtra("RESPONSE_BODY", responseBody);

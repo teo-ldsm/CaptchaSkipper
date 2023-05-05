@@ -8,4 +8,7 @@
     <string name="port">Port</string>
     <string name="default_port" translatable="false">5000</string>
     <string name="instruction_validation">Press Done when you have left the captcha page</string>
+    <string name="welcome">Welcome to Captcha Skipper. This application is open source. You can find the source code on this Github :</string>
+    <string name="github"><a href="https://github.com/teo-ldsm/CaptchaSkipper">Go to Github</a></string>
+    <string name="instruction">Once you have solved the captcha, click on the link that has just appeared and then click on the done button at the top left of the screen</string>
 </resources>
